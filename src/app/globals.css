@@ -1,26 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --navy-deep: #060d1b;
-  --navy: #0a1628;
-  --navy-light: #111827;
-  --blue: #3b82f6;
-  --blue-light: #60a5fa;
-  --blue-glow: #3b82f680;
-  --teal: #14b8a6;
-  --teal-glow: #14b8a640;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-hover: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --primary: #1E4ED8;
+  --primary-light: #BDCBF6;
+  --primary-glow: #1E4ED840;
+  --gray: #939393;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #939393;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-hover: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(189, 203, 246, 0.4);
+  --glass-border-hover: rgba(30, 78, 216, 0.3);
   --glass-blur: 20px;
 }
 
 @theme inline {
-  --color-background: var(--navy-deep);
+  --color-background: #ffffff;
   --color-foreground: var(--text-primary);
   --font-sans: 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', var(--font-geist-mono), monospace;
@@ -28,7 +24,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: rgba(189, 203, 246, 0.5) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -40,12 +36,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(189, 203, 246, 0.5);
   border-radius: 3px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(30, 78, 216, 0.3);
 }
 
 html {
@@ -53,7 +49,7 @@ html {
 }
 
 body {
-  background: var(--navy-deep);
+  background: #ffffff;
   color: var(--text-primary);
   font-family: 'Outfit', system-ui, sans-serif;
   overflow-x: hidden;
@@ -73,10 +69,10 @@ body {
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(189, 203, 246, 0.4);
 }
 
 /* Iridescent border effect */
@@ -92,10 +88,10 @@ body {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.3),
-    rgba(20, 184, 166, 0.2),
-    rgba(59, 130, 246, 0.1),
-    rgba(255, 255, 255, 0.05)
+    rgba(30, 78, 216, 0.3),
+    rgba(189, 203, 246, 0.4),
+    rgba(30, 78, 216, 0.15),
+    rgba(189, 203, 246, 0.2)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -106,13 +102,8 @@ body {
 
 /* Glow effects */
 .glow-blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15),
-              0 0 60px rgba(59, 130, 246, 0.05);
-}
-
-.glow-teal {
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.15),
-              0 0 60px rgba(20, 184, 166, 0.05);
+  box-shadow: 0 0 20px rgba(30, 78, 216, 0.1),
+              0 0 60px rgba(30, 78, 216, 0.03);
 }
 
 /* Pulsing ring animation for voice button */
@@ -152,7 +143,7 @@ body {
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  border: 2px solid var(--teal);
+  border: 2px solid var(--primary);
   animation: pulse-ring 2s ease-out infinite;
 }
 
@@ -249,13 +240,13 @@ body {
 }
 
 .aurora-btn {
-  background: linear-gradient(135deg, #3b82f6, #14b8a6, #3b82f6, #60a5fa);
+  background: linear-gradient(135deg, #1E4ED8, #3B6FF0, #1E4ED8, #5B8AF5);
   background-size: 300% 300%;
   animation: aurora 4s ease infinite;
 }
 
 .aurora-btn:hover {
-  background: linear-gradient(135deg, #60a5fa, #2dd4bf, #60a5fa, #93c5fd);
+  background: linear-gradient(135deg, #3B6FF0, #5B8AF5, #1E4ED8, #3B6FF0);
   background-size: 300% 300%;
   animation: aurora 2s ease infinite;
 }
@@ -325,5 +316,5 @@ body {
 }
 
 .prose-chat li::marker {
-  color: #60a5fa;
+  color: #1E4ED8;
 }

@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Phone, Bot, User, PhoneCall } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import GlassCard from '@/components/GlassCard';
 
 interface Message {
   id: string;
@@ -31,20 +30,23 @@ function TypingIndicator() {
       exit={{ opacity: 0, y: 10 }}
       className="flex items-start gap-3 max-w-[85%]"
     >
-      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#3b82f6]/20 to-[#14b8a6]/20 flex items-center justify-center flex-shrink-0 border border-white/[0.06]">
-        <Bot className="w-4 h-4 text-[#60a5fa]" />
+      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1E4ED8]/10 to-[#BDCBF6]/20 flex items-center justify-center flex-shrink-0 border border-[#BDCBF6]/30">
+        <Bot className="w-4 h-4 text-[#1E4ED8]" />
       </div>
       <div
         className="px-4 py-3 rounded-2xl rounded-tl-sm"
         style={{
-          background: 'rgba(255, 255, 255, 0.04)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(255, 255, 255, 0.8)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(189, 203, 246, 0.3)',
+          boxShadow: '0 2px 8px rgba(30, 78, 216, 0.04)',
         }}
       >
         <div className="flex items-center gap-1.5 h-5">
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#94a3b8]" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#94a3b8]" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#94a3b8]" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#939393]" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#939393]" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#939393]" />
         </div>
       </div>
     </motion.div>
@@ -65,16 +67,16 @@ function MessageBubble({ message }: { message: Message }) {
     >
       {/* Avatar */}
       <div
-        className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 border border-white/[0.06] ${
+        className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${
           isUser
-            ? 'bg-gradient-to-br from-[#3b82f6]/30 to-[#60a5fa]/20'
-            : 'bg-gradient-to-br from-[#3b82f6]/20 to-[#14b8a6]/20'
+            ? 'bg-gradient-to-br from-[#1E4ED8] to-[#3B6FF0]'
+            : 'bg-gradient-to-br from-[#1E4ED8]/10 to-[#BDCBF6]/20 border border-[#BDCBF6]/30'
         }`}
       >
         {isUser ? (
-          <User className="w-4 h-4 text-[#60a5fa]" />
+          <User className="w-4 h-4 text-white" />
         ) : (
-          <Bot className="w-4 h-4 text-[#60a5fa]" />
+          <Bot className="w-4 h-4 text-[#1E4ED8]" />
         )}
       </div>
 
@@ -86,34 +88,37 @@ function MessageBubble({ message }: { message: Message }) {
         style={
           isUser
             ? {
-                background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                border: '1px solid rgba(96, 165, 250, 0.3)',
+                background: 'linear-gradient(135deg, #1E4ED8, #3B6FF0)',
+                boxShadow: '0 4px 16px rgba(30, 78, 216, 0.2)',
               }
             : {
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
+                background: 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(189, 203, 246, 0.3)',
+                boxShadow: '0 2px 8px rgba(30, 78, 216, 0.04)',
               }
         }
       >
-        <div className={`text-sm leading-relaxed ${isUser ? 'text-white' : 'text-[#e2e8f0]'} prose-chat`}>
+        <div className={`text-sm leading-relaxed ${isUser ? 'text-white' : 'text-[#111827]'} prose-chat`}>
           {isUser ? (
             <p className="m-0">{message.content}</p>
           ) : (
             <ReactMarkdown
               components={{
                 p: ({ children }) => <p className="m-0 mb-2 last:mb-0">{children}</p>,
-                strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                strong: ({ children }) => <strong className="font-semibold text-[#111827]">{children}</strong>,
                 ol: ({ children }) => <ol className="m-0 mb-2 pl-5 list-decimal last:mb-0 space-y-1">{children}</ol>,
                 ul: ({ children }) => <ul className="m-0 mb-2 pl-5 list-disc last:mb-0 space-y-1">{children}</ul>,
                 li: ({ children }) => <li className="m-0">{children}</li>,
-                em: ({ children }) => <em className="text-[#94a3b8] not-italic text-xs">{children}</em>,
+                em: ({ children }) => <em className="text-[#939393] not-italic text-xs">{children}</em>,
               }}
             >
               {message.content}
             </ReactMarkdown>
           )}
         </div>
-        <p suppressHydrationWarning className={`text-[10px] mt-1.5 ${isUser ? 'text-blue-200/60' : 'text-[#64748b]'}`}>
+        <p suppressHydrationWarning className={`text-[10px] mt-1.5 ${isUser ? 'text-white/60' : 'text-[#939393]'}`}>
           {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </p>
       </div>
@@ -157,7 +162,6 @@ export default function ChatPage() {
     setIsTyping(true);
 
     try {
-      // Send conversation history to API (exclude welcome message from API, but keep for display)
       const apiMessages = updatedMessages.map((m) => ({
         role: m.role,
         content: m.content,
@@ -220,7 +224,6 @@ export default function ChatPage() {
 
       setCallStatus('success');
 
-      // Add a system message to chat
       const callMsg: Message = {
         id: Date.now().toString(),
         role: 'assistant',
@@ -251,32 +254,49 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-88px)] max-w-3xl mx-auto px-4 pb-4">
-      {/* Chat Container */}
-      <GlassCard
-        iridescent
-        hoverGlow={false}
-        className="flex flex-col flex-1 overflow-hidden"
+      {/* Chat Container - Liquid Glass */}
+      <motion.div
+        className="relative flex flex-col flex-1 overflow-hidden rounded-2xl glass-iridescent"
+        style={{
+          background: 'rgba(255, 255, 255, 0.6)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          border: '1px solid rgba(189, 203, 246, 0.4)',
+          boxShadow: '0 8px 32px rgba(30, 78, 216, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+        }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Chat Header */}
+        {/* Top highlight */}
         <div
-          className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]"
-          style={{ background: 'rgba(255, 255, 255, 0.02)' }}
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(189, 203, 246, 0.6), transparent)',
+          }}
+        />
+
+        {/* Chat Header - Glass */}
+        <div
+          className="flex items-center justify-between px-5 py-4 border-b border-[#BDCBF6]/30"
+          style={{
+            background: 'rgba(255, 255, 255, 0.5)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+          }}
         >
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#14b8a6] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E4ED8] to-[#3B6FF0] flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-2 border-[#0a1628] online-dot" />
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-2 border-white online-dot" />
             </div>
             <div>
-              <h2 className="text-sm font-semibold text-white tracking-tight">
+              <h2 className="text-sm font-semibold text-[#111827] tracking-tight">
                 Kyron Medical Assistant
               </h2>
-              <span className="text-[11px] text-green-400/80 font-medium">Online</span>
+              <span className="text-[11px] text-green-500 font-medium">Online</span>
             </div>
           </div>
 
@@ -285,10 +305,10 @@ export default function ChatPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowCallModal(true)}
-            className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-[#14b8a6] transition-colors pulse-ring"
+            className="relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-[#1E4ED8] transition-colors pulse-ring"
             style={{
-              background: 'rgba(20, 184, 166, 0.08)',
-              border: '1px solid rgba(20, 184, 166, 0.2)',
+              background: 'rgba(30, 78, 216, 0.06)',
+              border: '1px solid rgba(30, 78, 216, 0.15)',
             }}
           >
             <PhoneCall className="w-4 h-4" />
@@ -297,7 +317,7 @@ export default function ChatPage() {
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4">
+        <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4" style={{ background: 'rgba(249, 250, 252, 0.4)' }}>
           <AnimatePresence mode="popLayout">
             {messages.map((msg) => (
               <MessageBubble key={msg.id} message={msg} />
@@ -307,14 +327,22 @@ export default function ChatPage() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Area */}
-        <div className="px-4 py-4 border-t border-white/[0.06]" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+        {/* Input Area - Glass */}
+        <div
+          className="px-4 py-4 border-t border-[#BDCBF6]/30"
+          style={{
+            background: 'rgba(255, 255, 255, 0.5)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+          }}
+        >
           <div className="flex items-center gap-2">
             <div
-              className="flex-1 flex items-center rounded-xl px-4 py-3 transition-colors"
+              className="flex-1 flex items-center rounded-xl px-4 py-3 transition-all"
               style={{
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(255, 255, 255, 0.7)',
+                border: '1px solid rgba(189, 203, 246, 0.3)',
+                boxShadow: 'inset 0 1px 2px rgba(30, 78, 216, 0.03)',
               }}
             >
               <input
@@ -324,7 +352,7 @@ export default function ChatPage() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type your message..."
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-[#64748b] outline-none font-light"
+                className="flex-1 bg-transparent text-sm text-[#111827] placeholder:text-[#939393] outline-none font-light"
               />
             </div>
             <motion.button
@@ -335,24 +363,23 @@ export default function ChatPage() {
               className="w-11 h-11 rounded-xl flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
               style={{
                 background: input.trim()
-                  ? 'linear-gradient(135deg, #3b82f6, #2563eb)'
-                  : 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid',
-                borderColor: input.trim()
-                  ? 'rgba(96, 165, 250, 0.3)'
-                  : 'rgba(255, 255, 255, 0.06)',
+                  ? 'linear-gradient(135deg, #1E4ED8, #3B6FF0)'
+                  : 'rgba(189, 203, 246, 0.15)',
+                boxShadow: input.trim()
+                  ? '0 4px 16px rgba(30, 78, 216, 0.2)'
+                  : 'none',
               }}
             >
-              <Send className="w-4 h-4 text-white" />
+              <Send className={`w-4 h-4 ${input.trim() ? 'text-white' : 'text-[#939393]'}`} />
             </motion.button>
           </div>
-          <p className="text-[10px] text-[#475569] text-center mt-2.5 font-light">
+          <p className="text-[10px] text-[#939393] text-center mt-2.5 font-light">
             Kyron Medical AI cannot provide medical advice. For emergencies, call 911.
           </p>
         </div>
-      </GlassCard>
+      </motion.div>
 
-      {/* Voice Call Modal */}
+      {/* Voice Call Modal - Liquid Glass */}
       <AnimatePresence>
         {showCallModal && (
           <motion.div
@@ -360,7 +387,7 @@ export default function ChatPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center px-4"
-            style={{ background: 'rgba(6, 13, 27, 0.8)', backdropFilter: 'blur(8px)' }}
+            style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(8px)' }}
             onClick={() => setShowCallModal(false)}
           >
             <motion.div
@@ -369,73 +396,90 @@ export default function ChatPage() {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
+              className="relative max-w-sm w-full rounded-2xl glass-iridescent p-8 text-center"
+              style={{
+                background: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(30px)',
+                WebkitBackdropFilter: 'blur(30px)',
+                border: '1px solid rgba(189, 203, 246, 0.4)',
+                boxShadow: '0 16px 48px rgba(30, 78, 216, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+              }}
             >
-              <GlassCard iridescent className="p-8 max-w-sm w-full text-center" blur={30} opacity={0.08}>
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#14b8a6]/20 to-[#0d9488]/20 flex items-center justify-center mx-auto mb-5 border border-[#14b8a6]/20">
-                  <Phone className="w-8 h-8 text-[#14b8a6]" />
-                </div>
-                {callStatus === 'success' ? (
-                  <>
-                    <h3 className="text-xl font-semibold text-white mb-2">Calling You Now!</h3>
-                    <p className="text-sm text-[#94a3b8] leading-relaxed font-light">
-                      Your phone should ring shortly. The AI assistant will have full context of this chat.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <h3 className="text-xl font-semibold text-white mb-2">Continue via Phone</h3>
-                    <p className="text-sm text-[#94a3b8] mb-6 leading-relaxed font-light">
-                      We&apos;ll call your phone number and the AI assistant will continue
-                      your conversation with full context of this chat.
-                    </p>
-                    <div className="space-y-3">
+              {/* Top highlight */}
+              <div
+                className="absolute top-0 left-0 right-0 h-px rounded-t-2xl"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(189, 203, 246, 0.6), transparent)',
+                }}
+              />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1E4ED8]/10 to-[#BDCBF6]/20 flex items-center justify-center mx-auto mb-5 border border-[#BDCBF6]/30">
+                <Phone className="w-8 h-8 text-[#1E4ED8]" />
+              </div>
+              {callStatus === 'success' ? (
+                <>
+                  <h3 className="text-xl font-semibold text-[#111827] mb-2">Calling You Now!</h3>
+                  <p className="text-sm text-[#939393] leading-relaxed font-light">
+                    Your phone should ring shortly. The AI assistant will have full context of this chat.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-xl font-semibold text-[#111827] mb-2">Continue via Phone</h3>
+                  <p className="text-sm text-[#939393] mb-6 leading-relaxed font-light">
+                    We&apos;ll call your phone number and the AI assistant will continue
+                    your conversation with full context of this chat.
+                  </p>
+                  <div className="space-y-3">
+                    <input
+                      type="tel"
+                      value={callPhone}
+                      onChange={(e) => setCallPhone(e.target.value)}
+                      placeholder="(555) 123-4567"
+                      className="w-full px-4 py-3 rounded-xl text-sm text-[#111827] placeholder:text-[#939393] outline-none transition-colors font-light"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.7)',
+                        border: '1px solid rgba(189, 203, 246, 0.3)',
+                        boxShadow: 'inset 0 1px 2px rgba(30, 78, 216, 0.03)',
+                      }}
+                    />
+                    <label className="flex items-start gap-2.5 text-left cursor-pointer">
                       <input
-                        type="tel"
-                        value={callPhone}
-                        onChange={(e) => setCallPhone(e.target.value)}
-                        placeholder="(555) 123-4567"
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-white placeholder:text-[#64748b] outline-none focus:border-[#14b8a6]/30 transition-colors font-light"
+                        type="checkbox"
+                        checked={callConsent}
+                        onChange={(e) => setCallConsent(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded border-[#BDCBF6] bg-white accent-[#1E4ED8]"
                       />
-                      <label className="flex items-start gap-2.5 text-left cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={callConsent}
-                          onChange={(e) => setCallConsent(e.target.checked)}
-                          className="mt-0.5 w-4 h-4 rounded border-white/20 bg-white/5 accent-[#14b8a6]"
-                        />
-                        <span className="text-xs text-[#94a3b8] leading-relaxed">
-                          I agree to receive a phone call and SMS notifications from Kyron Medical
-                        </span>
-                      </label>
-                      {callStatus === 'error' && (
-                        <p className="text-xs text-red-400">Failed to initiate call. Please try again.</p>
-                      )}
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={handleVoiceCall}
-                        disabled={!callPhone.trim() || !callConsent || callStatus === 'calling'}
-                        className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-teal-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
-                        style={{
-                          background: 'linear-gradient(135deg, #14b8a6, #0d9488)',
-                          border: '1px solid rgba(20, 184, 166, 0.3)',
-                        }}
-                      >
-                        {callStatus === 'calling' ? 'Initiating Call...' : 'Call Me Now'}
-                      </motion.button>
-                      <button
-                        onClick={() => {
-                          setShowCallModal(false);
-                          setCallStatus('idle');
-                        }}
-                        className="w-full py-2.5 text-sm text-[#64748b] hover:text-[#94a3b8] transition-colors"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </>
-                )}
-              </GlassCard>
+                      <span className="text-xs text-[#939393] leading-relaxed">
+                        I agree to receive a phone call and SMS notifications from Kyron Medical
+                      </span>
+                    </label>
+                    {callStatus === 'error' && (
+                      <p className="text-xs text-red-500">Failed to initiate call. Please try again.</p>
+                    )}
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleVoiceCall}
+                      disabled={!callPhone.trim() || !callConsent || callStatus === 'calling'}
+                      className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-blue-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
+                      style={{
+                        background: 'linear-gradient(135deg, #1E4ED8, #3B6FF0)',
+                      }}
+                    >
+                      {callStatus === 'calling' ? 'Initiating Call...' : 'Call Me Now'}
+                    </motion.button>
+                    <button
+                      onClick={() => {
+                        setShowCallModal(false);
+                        setCallStatus('idle');
+                      }}
+                      className="w-full py-2.5 text-sm text-[#939393] hover:text-[#111827] transition-colors"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}

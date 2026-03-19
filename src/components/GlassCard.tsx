@@ -16,8 +16,8 @@ interface GlassCardProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
 export default function GlassCard({
   children,
   blur = 20,
-  opacity = 0.04,
-  borderOpacity = 0.08,
+  opacity = 0.7,
+  borderOpacity = 0.4,
   hoverGlow = true,
   iridescent = false,
   className = '',
@@ -34,11 +34,11 @@ export default function GlassCard({
         background: `rgba(255, 255, 255, ${opacity})`,
         backdropFilter: `blur(${blur}px)`,
         WebkitBackdropFilter: `blur(${blur}px)`,
-        border: `1px solid rgba(255, 255, 255, ${borderOpacity})`,
+        border: `1px solid rgba(189, 203, 246, ${borderOpacity})`,
       }}
       whileHover={hoverGlow ? {
-        borderColor: `rgba(255, 255, 255, ${borderOpacity + 0.07})`,
-        boxShadow: '0 8px 40px rgba(59, 130, 246, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+        borderColor: `rgba(30, 78, 216, 0.3)`,
+        boxShadow: '0 8px 40px rgba(30, 78, 216, 0.06), 0 0 0 1px rgba(189, 203, 246, 0.3)',
         transition: { duration: 0.3 },
       } : undefined}
       {...motionProps}
@@ -47,7 +47,7 @@ export default function GlassCard({
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(189, 203, 246, 0.5), transparent)',
         }}
       />
       {children}

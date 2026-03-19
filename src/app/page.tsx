@@ -9,22 +9,22 @@ const features = [
     icon: Calendar,
     title: 'Smart Scheduling',
     description: 'AI matches you with the right specialist and finds available times that work for your schedule.',
-    gradient: 'from-blue-500/20 to-cyan-500/10',
-    iconColor: '#60a5fa',
+    gradient: 'from-[#1E4ED8]/10 to-[#BDCBF6]/10',
+    iconColor: '#1E4ED8',
   },
   {
     icon: Mic,
     title: 'Voice AI',
     description: 'Switch from chat to a phone call anytime. Our AI continues the conversation seamlessly with full context.',
-    gradient: 'from-teal-500/20 to-emerald-500/10',
-    iconColor: '#14b8a6',
+    gradient: 'from-[#3B6FF0]/10 to-[#BDCBF6]/10',
+    iconColor: '#3B6FF0',
   },
   {
     icon: ShieldCheck,
     title: 'Secure & Private',
     description: 'HIPAA-compliant infrastructure ensures your health information stays protected at every step.',
-    gradient: 'from-indigo-500/20 to-purple-500/10',
-    iconColor: '#818cf8',
+    gradient: 'from-[#BDCBF6]/20 to-[#1E4ED8]/5',
+    iconColor: '#1E4ED8',
   },
 ];
 
@@ -32,14 +32,14 @@ export default function HomePage() {
   return (
     <div className="relative min-h-[calc(100vh-88px)] flex flex-col">
       {/* Floating decorative elements */}
-      <div className="absolute top-20 right-[15%] w-16 h-16 opacity-[0.04] animate-float-slow">
-        <Stethoscope className="w-full h-full text-blue-400" />
+      <div className="absolute top-20 right-[15%] w-16 h-16 opacity-[0.06] animate-float-slow">
+        <Stethoscope className="w-full h-full text-[#1E4ED8]" />
       </div>
-      <div className="absolute top-[40%] left-[8%] w-12 h-12 opacity-[0.04] animate-float-slow-reverse">
-        <Heart className="w-full h-full text-teal-400" />
+      <div className="absolute top-[40%] left-[8%] w-12 h-12 opacity-[0.06] animate-float-slow-reverse">
+        <Heart className="w-full h-full text-[#BDCBF6]" />
       </div>
-      <div className="absolute bottom-[25%] right-[10%] w-14 h-14 opacity-[0.04] animate-float-slow">
-        <Brain className="w-full h-full text-indigo-400" />
+      <div className="absolute bottom-[25%] right-[10%] w-14 h-14 opacity-[0.06] animate-float-slow">
+        <Brain className="w-full h-full text-[#1E4ED8]" />
       </div>
 
       {/* Hero Section */}
@@ -47,10 +47,10 @@ export default function HomePage() {
         {/* Badge */}
         <div className="fade-up" style={{ animationDelay: '0s' }}>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-            style={{ background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.15)' }}
+            style={{ background: 'rgba(189, 203, 246, 0.2)', border: '1px solid rgba(189, 203, 246, 0.4)' }}
           >
-            <div className="w-2 h-2 rounded-full bg-[#14b8a6] online-dot" />
-            <span className="text-xs font-medium tracking-wide text-[#94a3b8]">
+            <div className="w-2 h-2 rounded-full bg-green-500 online-dot" />
+            <span className="text-xs font-medium tracking-wide text-[#939393]">
               AI ASSISTANT ONLINE
             </span>
           </div>
@@ -61,17 +61,17 @@ export default function HomePage() {
           className="fade-up text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
           style={{ animationDelay: '0.15s' }}
         >
-          <span className="text-white">Your </span>
-          <span className="bg-gradient-to-r from-[#3b82f6] via-[#60a5fa] to-[#14b8a6] bg-clip-text text-transparent">
+          <span className="text-[#111827]">Your </span>
+          <span className="bg-gradient-to-r from-[#1E4ED8] via-[#3B6FF0] to-[#BDCBF6] bg-clip-text text-transparent">
             AI-Powered
           </span>
           <br />
-          <span className="text-white">Healthcare Assistant</span>
+          <span className="text-[#111827]">Healthcare Assistant</span>
         </h1>
 
         {/* Subtitle */}
         <p
-          className="fade-up text-lg sm:text-xl text-[#94a3b8] max-w-2xl mb-10 leading-relaxed font-light"
+          className="fade-up text-lg sm:text-xl text-[#939393] max-w-2xl mb-10 leading-relaxed font-light"
           style={{ animationDelay: '0.3s' }}
         >
           Schedule appointments, check prescriptions, and get office information —
@@ -81,7 +81,7 @@ export default function HomePage() {
         {/* CTA */}
         <div className="fade-up" style={{ animationDelay: '0.45s' }}>
           <Link href="/chat">
-            <button className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-semibold text-white aurora-btn transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] active:scale-[0.97]">
+            <button className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-semibold text-white aurora-btn transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(30,78,216,0.25)] active:scale-[0.97]">
               Start a Conversation
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </button>
@@ -90,15 +90,15 @@ export default function HomePage() {
 
         {/* Trust badges */}
         <div
-          className="fade-up flex items-center gap-6 mt-8 text-xs text-[#64748b]"
+          className="fade-up flex items-center gap-6 mt-8 text-xs text-[#939393]"
           style={{ animationDelay: '0.6s' }}
         >
           <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5" /> HIPAA Compliant
           </span>
-          <span className="w-1 h-1 rounded-full bg-[#334155]" />
+          <span className="w-1 h-1 rounded-full bg-[#BDCBF6]" />
           <span>24/7 Available</span>
-          <span className="w-1 h-1 rounded-full bg-[#334155]" />
+          <span className="w-1 h-1 rounded-full bg-[#BDCBF6]" />
           <span>No Wait Times</span>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function HomePage() {
               >
                 <div
                   className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-5`}
-                  style={{ border: '1px solid rgba(255, 255, 255, 0.06)' }}
+                  style={{ border: '1px solid rgba(189, 203, 246, 0.3)' }}
                 >
                   <feature.icon
                     className="w-6 h-6"
@@ -127,10 +127,10 @@ export default function HomePage() {
                   />
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-2.5 tracking-tight">
+                <h3 className="text-lg font-semibold text-[#111827] mb-2.5 tracking-tight">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-[#94a3b8] leading-relaxed font-light">
+                <p className="text-sm text-[#939393] leading-relaxed font-light">
                   {feature.description}
                 </p>
               </GlassCard>

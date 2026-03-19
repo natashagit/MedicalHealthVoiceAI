@@ -72,7 +72,7 @@ export default function AnimatedBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(148, 163, 184, ${p.opacity * 0.15})`;
+        ctx.fillStyle = `rgba(189, 203, 246, ${p.opacity * 0.3})`;
         ctx.fill();
 
         if (p.life >= p.maxLife || p.y < -10) {
@@ -100,42 +100,35 @@ export default function AnimatedBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      {/* Deep navy base */}
-      <div className="absolute inset-0 bg-[#060d1b]" />
+      {/* White base */}
+      <div className="absolute inset-0 bg-white" />
 
-      {/* Mesh gradient blobs */}
+      {/* Soft gradient blobs */}
       <div
-        className="absolute -top-1/4 -left-1/4 w-[70vw] h-[70vh] rounded-full opacity-30"
+        className="absolute -top-1/4 -left-1/4 w-[70vw] h-[70vh] rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(ellipse at center, #1e3a5f 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, #BDCBF6 0%, transparent 70%)',
           animation: 'mesh-shift 20s ease-in-out infinite',
         }}
       />
       <div
-        className="absolute top-1/3 -right-1/4 w-[60vw] h-[60vh] rounded-full opacity-25"
+        className="absolute top-1/3 -right-1/4 w-[60vw] h-[60vh] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(ellipse at center, #0f4c75 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, #BDCBF6 0%, transparent 70%)',
           animation: 'mesh-shift-reverse 25s ease-in-out infinite',
         }}
       />
       <div
-        className="absolute -bottom-1/4 left-1/3 w-[50vw] h-[50vh] rounded-full opacity-20"
+        className="absolute -bottom-1/4 left-1/3 w-[50vw] h-[50vh] rounded-full opacity-10"
         style={{
-          background: 'radial-gradient(ellipse at center, #115e59 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, #1E4ED8 0%, transparent 70%)',
           animation: 'mesh-shift 30s ease-in-out infinite 5s',
-        }}
-      />
-      <div
-        className="absolute top-1/2 left-1/4 w-[40vw] h-[40vh] rounded-full opacity-15"
-        style={{
-          background: 'radial-gradient(ellipse at center, #1e40af 0%, transparent 70%)',
-          animation: 'mesh-shift-reverse 22s ease-in-out infinite 3s',
         }}
       />
 
       {/* Subtle noise overlay */}
       <div
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           backgroundRepeat: 'repeat',
@@ -147,14 +140,6 @@ export default function AnimatedBackground() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
-      />
-
-      {/* Top vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 50%, #060d1b 100%)',
-        }}
       />
     </div>
   );
