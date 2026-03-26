@@ -17,8 +17,8 @@ export async function POST(req: Request) {
       smsOptIn,
     } = await req.json();
 
-    const location = 'Kyron Medical Partners - Main Office, 1200 Healthcare Blvd, Suite 300, San Francisco, CA 94102';
-    const phone = '(415) 555-0100';
+    const location = 'Prelude Health Partners - Main Office, 315 East 72nd Street, Suite 400, New York, NY 10021';
+    const phone = '(212) 555-0100';
 
     const results: { email?: unknown; sms?: unknown } = {};
 

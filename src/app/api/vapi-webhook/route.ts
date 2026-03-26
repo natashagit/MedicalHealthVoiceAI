@@ -77,8 +77,8 @@ async function handleToolCall(name: string, args: Record<string, string>): Promi
         duration: `${bookedSlot?.duration || 45} minutes`,
         reason,
         appointmentId: appointment.id,
-        location: 'Kyron Medical Partners - Main Office, 1200 Healthcare Blvd, Suite 300, San Francisco, CA 94102',
-        phone: '(415) 555-0100',
+        location: 'Prelude Health Partners - Main Office, 315 East 72nd Street, Suite 400, New York, NY 10021',
+        phone: '(212) 555-0100',
       }).then((result) => {
         if (result.success) console.log('[Vapi Webhook] Confirmation email sent to', email);
         else console.error('[Vapi Webhook] Email failed:', result.error);
@@ -95,7 +95,7 @@ async function handleToolCall(name: string, args: Record<string, string>): Promi
         doctorName: doctor?.name || '',
         date: dateFormatted,
         time: timeFormatted,
-        location: 'Kyron Medical Partners - Main Office, 1200 Healthcare Blvd, Suite 300',
+        location: 'Prelude Health Partners - Main Office, 315 East 72nd Street, Suite 400',
       }).then((result) => {
         if (result.success) console.log('[Vapi Webhook] Confirmation SMS sent to', phone);
         else console.error('[Vapi Webhook] SMS failed:', result.error);

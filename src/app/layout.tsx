@@ -4,7 +4,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Kyron Medical | AI Healthcare Assistant",
+  title: "Prelude Health | AI Healthcare Assistant",
   description: "Your AI-powered healthcare assistant. Schedule appointments, check prescriptions, and connect with your care team through intelligent voice AI.",
 };
 

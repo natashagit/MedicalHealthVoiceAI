@@ -31,7 +31,7 @@ export default function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-[15px] font-semibold tracking-tight text-[#111827] leading-tight">
-                Kyron Medical
+                Prelude Health
               </span>
               <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-[#939393] leading-tight">
                 Voice AI

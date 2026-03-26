@@ -17,7 +17,7 @@ interface AppointmentSmsData {
 export async function sendAppointmentSms(data: AppointmentSmsData) {
   try {
     const message = await client.messages.create({
-      body: `Hi ${data.patientName}! Your appointment with ${data.doctorName} is confirmed for ${data.date} at ${data.time}. Location: ${data.location}. Please arrive 15 min early. Reply STOP to opt out. - Kyron Medical Partners`,
+      body: `Hi ${data.patientName}! Your appointment with ${data.doctorName} is confirmed for ${data.date} at ${data.time}. Location: ${data.location}. Please arrive 15 min early. Reply STOP to opt out. - Prelude Health Partners`,
       from: process.env.TWILIO_PHONE_NUMBER,
       to: data.patientPhone,
     });

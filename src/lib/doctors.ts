@@ -184,20 +184,20 @@ export function getAppointments(): Appointment[] {
 
 // Practice info
 export const practiceInfo = {
-  name: 'Kyron Medical Partners',
+  name: 'Prelude Health Partners',
   locations: [
     {
       name: 'Main Office',
-      address: '1200 Healthcare Blvd, Suite 300, San Francisco, CA 94102',
-      phone: '(415) 555-0100',
+      address: '315 East 72nd Street, Suite 400, New York, NY 10021',
+      phone: '(212) 555-0100',
       hours: 'Monday–Friday: 8:00 AM – 6:00 PM, Saturday: 9:00 AM – 1:00 PM, Sunday: Closed',
     },
     {
       name: 'Downtown Clinic',
-      address: '450 Market Street, Floor 2, San Francisco, CA 94105',
-      phone: '(415) 555-0200',
+      address: '160 Broadway, Floor 3, New York, NY 10038',
+      phone: '(212) 555-0200',
       hours: 'Monday–Friday: 9:00 AM – 5:00 PM, Saturday–Sunday: Closed',
     },
   ],
-  website: 'www.kyronmedicalpartners.com',
+  website: 'www.preludehealth.com',
 };

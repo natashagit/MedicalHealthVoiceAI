@@ -19,7 +19,7 @@ interface AppointmentEmailData {
 export async function sendAppointmentConfirmation(data: AppointmentEmailData) {
   try {
     const { error } = await resend.emails.send({
-      from: 'Kyron Medical <appointments@prelude.team>',
+      from: 'Prelude Health <appointments@prelude.team>',
       to: data.patientEmail,
       subject: `Appointment Confirmed - ${data.doctorName} on ${data.date}`,
       html: `
@@ -33,7 +33,7 @@ export async function sendAppointmentConfirmation(data: AppointmentEmailData) {
   <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
     <!-- Header -->
     <div style="text-align:center;margin-bottom:32px;">
-      <h1 style="color:#f8fafc;font-size:24px;margin:0;">Kyron Medical Partners</h1>
+      <h1 style="color:#f8fafc;font-size:24px;margin:0;">Prelude Health Partners</h1>
       <p style="color:#64748b;font-size:13px;margin-top:4px;">AI Healthcare Assistant</p>
     </div>
 
@@ -96,7 +96,7 @@ export async function sendAppointmentConfirmation(data: AppointmentEmailData) {
         Need to reschedule? Reply to this email or call us at ${data.phone}
       </p>
       <p style="color:#334155;font-size:11px;margin-top:16px;">
-        © ${new Date().getFullYear()} Kyron Medical Partners. All rights reserved.
+        © ${new Date().getFullYear()} Prelude Health Partners. All rights reserved.
       </p>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { doctors, getAvailableSlots, createAppointment, practiceInfo, type PatientInfo } from '@/lib/doctors';
+import { doctors, getAvailableSlots, getAvailability, createAppointment, practiceInfo, type PatientInfo } from '@/lib/doctors';
 import { sendAppointmentConfirmation } from '@/lib/email';
 import { sendAppointmentSms } from '@/lib/sms';
 
@@ -43,7 +43,7 @@ ${practiceInfo.locations.map((l) => `${l.name}: ${l.address} | Phone: ${l.phone}
 - If the patient asks to continue via phone, let them know they can click the "Call Me" button in the chat header
 
 ## TOOL USAGE
-When you have identified the right doctor and collected patient info, use the tools provided to check availability and book appointments. Always present availability in a clear, readable format with day of week, date, and time.
+When you have identified the right doctor and collected patient info, use the tools provided to check availability and book appointments. Always present availability in a clear, readable format with day of week, date, and time. IMPORTANT: When booking, you MUST use the exact slot_id string returned by check_availability (e.g. "dr-chen-2026-03-27-09:00"). Do NOT modify, reformat, or fabricate slot IDs.
 
 When presenting available times, format them nicely like:
 1. Monday, March 24 at 9:00 AM
@@ -141,12 +141,18 @@ async function handleToolCall(name: string, input: Record<string, string>): Prom
     const appointment = createAppointment(doctor_id, slot_id, patient, reason);
 
     if (!appointment) {
+      // Help debug: check if the slot_id even exists
+      const allSlots = getAvailability();
+      const matchedSlot = allSlots.find((s) => s.id === slot_id);
+      if (!matchedSlot) {
+        return JSON.stringify({ error: `Slot ID "${slot_id}" not found. Please use the exact slot_id from check_availability results.` });
+      }
       return JSON.stringify({ error: 'Sorry, that slot is no longer available. Please choose another time.' });
     }
 
     const doctor = doctors.find((d) => d.id === doctor_id);
-    // Find slot info from the appointment's slot_id
-    const allSlots = getAvailableSlots(doctor_id);
+    // Find slot info directly from all slots (not getAvailableSlots, since it's now booked)
+    const allSlots = getAvailability();
     const bookedSlot = allSlots.find((s) => s.id === slot_id);
     const slotDate = bookedSlot?.date || '';
     const slotTime = bookedSlot?.time || '';
@@ -167,8 +173,8 @@ async function handleToolCall(name: string, input: Record<string, string>): Prom
       duration: `${bookedSlot?.duration || 45} minutes`,
       reason,
       appointmentId: appointment.id,
-      location: 'Kyron Medical Partners - Main Office, 1200 Healthcare Blvd, Suite 300, San Francisco, CA 94102',
-      phone: '(415) 555-0100',
+      location: 'Prelude Health Partners - Main Office, 315 East 72nd Street, Suite 400, New York, NY 10021',
+      phone: '(212) 555-0100',
     }).then((result) => {
       if (result.success) console.log('Confirmation email sent to', email);
       else console.error('Email failed:', result.error);
@@ -184,7 +190,7 @@ async function handleToolCall(name: string, input: Record<string, string>): Prom
         doctorName: doctor?.name || '',
         date: dateFormatted,
         time: timeFormatted,
-        location: 'Kyron Medical Partners - Main Office, 1200 Healthcare Blvd, Suite 300',
+        location: 'Prelude Health Partners - Main Office, 315 East 72nd Street, Suite 400',
       }).then((result) => {
         if (result.success) console.log('Confirmation SMS sent to', phone);
         else console.error('SMS failed:', result.error);

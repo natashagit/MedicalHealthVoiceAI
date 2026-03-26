@@ -1,10 +1,10 @@
-# Kyron Medical — Patient Voice AI
+# Prelude Health — Patient Voice AI
 
 Your AI-Powered Healthcare Assistant. Schedule appointments, check prescriptions, and get office information — all through an intelligent conversation. Switch to voice anytime.
 
 **Live**: [https://health.prelude.team/](https://health.prelude.team/)
 
-![Kyron Medical Landing Page](public/screenshot.png)
+![Prelude Health Landing Page](public/screenshot.png)
 
 ## Features
 

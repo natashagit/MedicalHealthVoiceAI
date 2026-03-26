@@ -17,7 +17,7 @@ function createWelcomeMessage(): Message {
     id: 'welcome',
     role: 'assistant',
     content:
-      "Hello! I'm your Kyron Medical assistant. I can help you schedule appointments, check prescription refills, or find office information. How can I help you today?",
+      "Hello! I'm your Prelude Health assistant. I can help you schedule appointments, check prescription refills, or find office information. How can I help you today?",
     timestamp: new Date(),
   };
 }
@@ -294,7 +294,7 @@ export default function ChatPage() {
             </div>
             <div>
               <h2 className="text-sm font-semibold text-[#111827] tracking-tight">
-                Kyron Medical Assistant
+                Prelude Health Assistant
               </h2>
               <span className="text-[11px] text-green-500 font-medium">Online</span>
             </div>
@@ -374,7 +374,7 @@ export default function ChatPage() {
             </motion.button>
           </div>
           <p className="text-[10px] text-[#939393] text-center mt-2.5 font-light">
-            Kyron Medical AI cannot provide medical advice. For emergencies, call 911.
+            Prelude Health AI cannot provide medical advice. For emergencies, call 911.
           </p>
         </div>
       </motion.div>
@@ -450,7 +450,7 @@ export default function ChatPage() {
                         className="mt-0.5 w-4 h-4 rounded border-[#BDCBF6] bg-white accent-[#1E4ED8]"
                       />
                       <span className="text-xs text-[#939393] leading-relaxed">
-                        I agree to receive a phone call and SMS notifications from Kyron Medical
+                        I agree to receive a phone call and SMS notifications from Prelude Health
                       </span>
                     </label>
                     {callStatus === 'error' && (

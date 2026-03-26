@@ -109,7 +109,7 @@ Continue naturally from where the chat left off. ${patientName ? `The patient's 
 
   const body: Record<string, unknown> = {
     assistant: {
-      firstMessage: `Hi${patientName ? ` ${patientName}` : ''}! This is the Kyron Medical assistant. I have the context from our chat — how can I continue helping you?`,
+      firstMessage: `Hi${patientName ? ` ${patientName}` : ''}! This is the Prelude Health assistant. I have the context from our chat — how can I continue helping you?`,
       model: {
         provider: 'anthropic',
         model: 'claude-sonnet-4-20250514',
