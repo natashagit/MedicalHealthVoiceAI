@@ -4,7 +4,6 @@ Your AI-Powered Healthcare Assistant. Schedule appointments, check prescriptions
 
 **Live**: [https://health.prelude.team/](https://health.prelude.team/)
 
-![Prelude Health Landing Page](public/screenshot.png)
 
 ## Features
 
