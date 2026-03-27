@@ -1,4 +1,4 @@
-import { doctors, getAvailableSlots, createAppointment, type PatientInfo } from '@/lib/doctors';
+import { doctors, getAvailableSlots, getAvailability, createAppointment, type PatientInfo } from '@/lib/doctors';
 import { sendAppointmentConfirmation } from '@/lib/email';
 import { sendAppointmentSms } from '@/lib/sms';
 
@@ -51,11 +51,16 @@ async function handleToolCall(name: string, args: Record<string, string>): Promi
     const appointment = createAppointment(doctor_id, slot_id, patient, reason);
 
     if (!appointment) {
+      const allSlots = getAvailability();
+      const matchedSlot = allSlots.find((s) => s.id === slot_id);
+      if (!matchedSlot) {
+        return JSON.stringify({ error: `Slot ID "${slot_id}" not found. Please use the exact slot_id from check_availability results.` });
+      }
       return JSON.stringify({ error: 'Sorry, that slot is no longer available. Please choose another time.' });
     }
 
     const doctor = doctors.find((d) => d.id === doctor_id);
-    const allSlots = getAvailableSlots(doctor_id);
+    const allSlots = getAvailability();
     const bookedSlot = allSlots.find((s) => s.id === slot_id);
     const slotDate = bookedSlot?.date || '';
     const slotTime = bookedSlot?.time || '';
